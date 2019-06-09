@@ -23,8 +23,9 @@ class Artist
     end
 
     def self.find_or_create_by_name(name)
-        if Artist.all.include? name
-            star = Artist.all.find { |artist| artist.name == name }
+        star = self.all.find {|artist| artist.name == name }
+        if star
+            star
         else
             star = Artist.new(name)
         end
@@ -32,7 +33,8 @@ class Artist
     end
 
     def print_songs
-
+        my_songs = Song.all.select { |song| song.artist == self.name }
+        my_songs.map {|song| puts song.name }
     end
 
 end
