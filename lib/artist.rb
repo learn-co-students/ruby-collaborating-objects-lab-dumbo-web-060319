@@ -1,21 +1,22 @@
+require 'pry'
+
 class Artist
-    attr_accessor :name
+    attr_accessor :name, :songs
 
     @@all = []
 
     def initialize(name)
         @name = name
+
+        @songs = []
     end
 
     def self.all
         @@all
     end
 
-    def add_song(record)
-        song = Song.new(record)
-        song.artist = self.name
-
-        song
+    def add_song(song)
+        @songs << song
     end
 
     def save
@@ -28,13 +29,15 @@ class Artist
             star
         else
             star = Artist.new(name)
+
         end
         star
     end
 
     def print_songs
         my_songs = Song.all.select { |song| song.artist == self.name }
-        my_songs.map {|song| puts song.name }
+        my_songs.map {|song| song.name }
+        puts my_songs
     end
 
 end
