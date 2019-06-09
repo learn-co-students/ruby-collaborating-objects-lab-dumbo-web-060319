@@ -7,7 +7,10 @@ class MP3Importer
 
     def files
         File.basename(self.path, ".mp3")
-        Dir.entries(self.path)
+        Dir.glob("#{self.path}/*.mp3").map { 
+            |file| file.slice!('./spec/fixtures/mp3s/') 
+            file
+        }
     end
 
     def import
