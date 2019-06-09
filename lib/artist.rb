@@ -29,15 +29,14 @@ class Artist
             star
         else
             star = Artist.new(name)
-
         end
         star
     end
 
     def print_songs
-        my_songs = Song.all.select { |song| song.artist == self.name }
-        my_songs.map {|song| song.name }
-        puts my_songs
+        song_names = []
+        @songs.each {|song| song_names << song.name }
+        puts song_names
     end
 
 end
